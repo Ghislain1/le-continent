@@ -94,14 +94,18 @@ export default function Home() {
             className="flex flex-col sm:flex-row gap-4 justify-center mt-10"
           >
             <Link to="/menu"
-              className="px-8 py-3.5 bg-gold-400 text-charcoal-900 font-body font-semibold text-sm tracking-widest uppercase hover:bg-gold-300 transition-all duration-300 shadow-lg shadow-gold-400/20"
+              className="px-8 py-3.5 rounded-full text-charcoal-900 font-body font-semibold text-sm tracking-widest uppercase transition-all duration-300 shadow-lg animate-fire animate-fire-bg hover:brightness-110"
+              style={{
+                background: 'linear-gradient(135deg, #d4af37, #f4d03f, #d4af37, #b8860b)',
+                backgroundSize: '200% 200%',
+              }}
             >
-              Speisekarte ansehen
+              <span className="relative z-10">Speisekarte ansehen</span>
             </Link>
             <Link to="/contact"
-              className="px-8 py-3.5 border border-gold-400 text-gold-400 font-body font-semibold text-sm tracking-widest uppercase hover:bg-gold-400 hover:text-charcoal-900 transition-all duration-300"
+              className="px-8 py-3.5 rounded-full border border-gold-400 text-gold-400 font-body font-semibold text-sm tracking-widest uppercase hover:bg-gold-400 hover:text-charcoal-900 transition-all duration-300 animate-fire"
             >
-              Tisch reservieren
+              <span className="relative z-10">Tisch reservieren</span>
             </Link>
           </motion.div>
         </div>

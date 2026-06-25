@@ -91,11 +91,15 @@ export default function Contact() {
                 </div>
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full py-3.5 bg-gold-400 text-charcoal-900 font-body font-semibold text-sm tracking-widest uppercase hover:bg-gold-300 transition-all duration-300 cursor-pointer"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="w-full py-3.5 rounded-full text-charcoal-900 font-body font-semibold text-sm tracking-widest uppercase transition-all duration-300 cursor-pointer animate-fire animate-fire-bg hover:brightness-110"
+                  style={{
+                    background: 'linear-gradient(135deg, #d4af37, #f4d03f, #d4af37, #b8860b)',
+                    backgroundSize: '200% 200%',
+                  }}
                 >
-                  Nachricht senden
+                  <span className="relative z-10">Nachricht senden</span>
                 </motion.button>
               </form>
             )}

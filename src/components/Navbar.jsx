@@ -73,9 +73,9 @@ export default function Navbar() {
             ))}
             <Link
               to="/contact"
-              className="ml-6 px-6 py-2.5 border border-gold-400 text-gold-400 text-sm tracking-widest uppercase font-body font-medium hover:bg-gold-400 hover:text-charcoal-900 transition-all duration-300"
+              className="ml-6 px-6 py-2.5 rounded-full border border-gold-400 text-gold-400 text-sm tracking-widest uppercase font-body font-medium hover:bg-gold-400 hover:text-charcoal-900 transition-all duration-300 animate-fire"
             >
-              Reservieren
+              <span className="relative z-10">Reservieren</span>
             </Link>
           </div>
 
@@ -133,9 +133,9 @@ export default function Navbar() {
               <div className="pt-4 px-4">
                 <Link
                   to="/contact"
-                  className="block w-full text-center px-6 py-3 border border-gold-400 text-gold-400 text-sm tracking-widest uppercase font-body font-medium hover:bg-gold-400 hover:text-charcoal-900 transition-all duration-300"
+                  className="block w-full text-center px-6 py-3 rounded-full border border-gold-400 text-gold-400 text-sm tracking-widest uppercase font-body font-medium hover:bg-gold-400 hover:text-charcoal-900 transition-all duration-300 animate-fire"
                 >
-                  Reservieren
+                  <span className="relative z-10">Reservieren</span>
                 </Link>
               </div>
             </div>

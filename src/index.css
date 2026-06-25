@@ -18,12 +18,32 @@
   --font-body: "Inter", "Montserrat", Arial, sans-serif;
   --font-mono: "Courier New", monospace;
   --animate-spin-slow: spin 8s linear infinite;
-  --animate-pulse-gold: pulse-gold 2s ease-in-out infinite;
+  --animate-fire: fire-glow 1.6s ease-in-out infinite;
+  --animate-fire-bg: fire-bg 3s ease infinite;
 }
 
-@keyframes pulse-gold {
-  0%, 100% { box-shadow: 0 0 5px rgba(212, 175, 55, 0.3); }
-  50% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.6); }
+@keyframes fire-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3), 0 0 16px rgba(212, 175, 55, 0.1);
+  }
+  25% {
+    box-shadow: 0 0 14px rgba(244, 208, 63, 0.5), 0 0 28px rgba(244, 208, 63, 0.2), 0 0 6px rgba(255, 140, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 6px rgba(212, 175, 55, 0.4), 0 0 24px rgba(244, 208, 63, 0.3), 0 0 10px rgba(255, 69, 0, 0.15);
+  }
+  75% {
+    box-shadow: 0 0 16px rgba(244, 208, 63, 0.4), 0 0 32px rgba(212, 175, 55, 0.15);
+  }
+}
+
+@keyframes fire-bg {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 html {
