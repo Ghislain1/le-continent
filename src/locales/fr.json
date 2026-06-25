@@ -1,0 +1,193 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "menu": "Carte",
+    "events": "Événements",
+    "gallery": "Galerie",
+    "contact": "Contact",
+    "reserve": "Réserver",
+    "openMenu": "Ouvrir le menu"
+  },
+  "hero": {
+    "tagline": "Restaurant Premium Camerounais",
+    "viewMenu": "Voir la carte",
+    "reserveTable": "Réserver une table",
+    "sideText": "LIVE THE EXCEPTIONAL"
+  },
+  "special": {
+    "subtitle": "Spécial Dimanche",
+    "title": "Dimanche Taro",
+    "script": "Un dimanche comme au Cameroun",
+    "signature": "Plat Signature",
+    "heading": "Dégustation Traditionnelle de Taro",
+    "paragraph": "Notre plat signature {{dish}} allie les saveurs traditionnelles camerounaises à une présentation moderne. Tendres racines de taro, rehaussées d'épices exquises et servies avec des accompagnements de saison – une expérience culinaire qui vous transporte directement en Afrique centrale.",
+    "points": [
+      "Préparé fraîchement avec des racines de taro importées",
+      "Accompagné de sauces maison",
+      "Options végétariennes et végétaliennes disponibles"
+    ],
+    "badge1": "100% ARÔMES LOCAUX",
+    "badge2": "PRÉPARÉ AVEC PASSION"
+  },
+  "features": {
+    "subtitle": "Pourquoi Nous Choisir",
+    "title": "L'Expérience LE CONTINENT",
+    "script": "Plus qu'un restaurant",
+    "items": [
+      { "title": "Premium Drinks", "desc": "Cocktails raffinés et spiritueux exclusifs du monde entier." },
+      { "title": "Ambiance Unique", "desc": "Ambiance lounge luxueuse avec un flair afro-européen." },
+      { "title": "Sons d'Exception", "desc": "Sets DJ live et sons relaxants chaque week-end." },
+      { "title": "Événements Exclusifs", "desc": "Dîners privés, soirées VIP et moments culturels." }
+    ],
+    "cta": "Chaque dimanche à partir de 10h",
+    "ctaScript": "Dimanche Taro – Soyez là!"
+  },
+  "galleryPreview": {
+    "subtitle": "Aperçus",
+    "title": "Notre Galerie",
+    "script": "Moments capturés",
+    "viewAll": "Voir tout"
+  },
+  "menu": {
+    "subtitle": "Notre Carte",
+    "title": "Carte",
+    "script": "Des arômes qui connectent",
+    "categories": {
+      "all": "Tous",
+      "mains": "Plats Principaux",
+      "drinks": "Boissons",
+      "specialties": "Spécialités"
+    },
+    "items": [
+      { "desc": "Plat traditionnel de taro avec sauce cacahuète, servi avec plantains et légumes de saison.", "tags": ["Signature", "Traditionnel"] },
+      { "desc": "Poulet camerounais aux plantains, légumes et une crème de tomate épicée.", "tags": ["Classique"] },
+      { "desc": "Ragoût de feuilles amères aux crevettes, cacahuètes et huile de palme – un moment fort.", "tags": ["Traditionnel", "Poisson"] },
+      { "desc": "Sandre grillé avec marinade épicée, servi avec manioc et haricots verts.", "tags": ["Poisson", "Grillé"] },
+      { "desc": "Création maison à la mangue-fruit de la passion, vodka, citron vert et une touche de menthe.", "tags": ["Signature", "Cocktail"] },
+      { "desc": "Thé gingembre-hibiscus au miel et à la menthe fraîche – rafraîchissant et authentique.", "tags": ["Rafraîchissement"] },
+      { "desc": "Vins fins d'Afrique du Sud, de France et d'Allemagne – nous vous conseillons volontiers.", "tags": ["Vin"] },
+      { "desc": "Plaisir sans alcool à base de fruit de la passion, lait de coco et citron vert.", "tags": ["Mocktail"] },
+      { "desc": "Trois trempettes maison : cacahuète, avocat, tomate-piment – avec chips de manioc.", "tags": ["Entrée", "Partage"] },
+      { "desc": "Brochettes de bœuf, poulet et crevettes avec glaçage yakitori et légumes.", "tags": ["Grill", "Partage"] },
+      { "desc": "Café sénégalais aux clous de girofle et poivre noir – un délice énergisant.", "tags": ["Café", "Authentique"] },
+      { "desc": "Grand plateau de dégustation pour deux personnes avec diverses spécialités camerounaises.", "tags": ["Partage", "Dégustation"] }
+    ]
+  },
+  "events": {
+    "subtitle": "Événements & Manifestations",
+    "title": "Vivez LE CONTINENT",
+    "script": "Des moments qui restent",
+    "items": [
+      {
+        "subtitle": "Spécial Dimanche",
+        "day": "Chaque dimanche",
+        "time": "10h00 – 22h00",
+        "desc": "Notre événement signature : dégustez des plats traditionnels camerounais dans une ambiance lounge décontractée. Des stations de cuisine live et une musique authentique accompagnent votre dimanche.",
+        "highlights": ["Cuisine en Direct", "Cocktails Signature", "Family-Friendly"]
+      },
+      {
+        "subtitle": "Soirées Live",
+        "day": "Chaque vendredi & samedi",
+        "time": "20h00 – 02h00",
+        "desc": "Découvrez des performances live d'artistes locaux et internationaux. De l'afrobeat au jazz en passant par les sons lounge modernes – il y en a pour toutes les ambiances.",
+        "highlights": ["Groupes & DJs Live", "Dansez & Savourez", "Espace VIP"]
+      },
+      {
+        "subtitle": "Exclusif & Privé",
+        "day": "Sur rendez-vous",
+        "time": "Planification individuelle",
+        "desc": "Que ce soit pour des anniversaires, des événements d'entreprise ou des occasions spéciales – nous concevons votre soirée exclusivement selon vos souhaits. Notre équipe s'occupe de chaque détail.",
+        "highlights": ["Salon Privé", "Menu Personnalisé", "Service Complet"]
+      },
+      {
+        "subtitle": "Voyage Culinaire",
+        "day": "Chaque 1er samedi du mois",
+        "time": "18h00 – 23h00",
+        "desc": "Laissez-vous guider à travers les saveurs de l'Afrique centrale avec un menu surprise multi-plats. Chaque mois dévoile une nouvelle histoire culinaire.",
+        "highlights": ["Menu 4 Services", "Accord Mets-Vins", "Places Limitées"]
+      }
+    ]
+  },
+  "gallery": {
+    "subtitle": "Impressions",
+    "title": "Galerie",
+    "script": "Un regard sur notre monde",
+    "categories": {
+      "all": "Tous",
+      "ambient": "Ambiance",
+      "food": "Plats",
+      "drinks": "Boissons",
+      "events": "Événements"
+    },
+    "empty": "Aucune image dans cette catégorie.",
+    "close": "Fermer",
+    "labels": {
+      "ambient": "Ambiance",
+      "food": "Plats",
+      "drinks": "Boissons",
+      "events": "Événements"
+    },
+    "captions": {
+      "ambient": "Une atmosphère envoûtante",
+      "food": "Des arômes qui connectent",
+      "drinks": "Plaisir dans un verre",
+      "events": "Des moments qui restent"
+    }
+  },
+  "contact": {
+    "subtitle": "Contact",
+    "title": "Écrivez-nous",
+    "script": "Nous nous réjouissons de vous entendre",
+    "form": {
+      "name": "Nom",
+      "email": "E-mail",
+      "message": "Message",
+      "namePlaceholder": "Votre nom",
+      "emailPlaceholder": "votre@email.fr",
+      "messagePlaceholder": "Votre message pour nous...",
+      "send": "Envoyer le message",
+      "successTitle": "Message envoyé !",
+      "successText": "Nous vous répondrons bientôt."
+    },
+    "info": {
+      "address": "Adresse",
+      "phone": "Téléphone",
+      "email": "E-mail",
+      "hours": "Horaires d'ouverture",
+      "hoursLines": ["Mar–Jeu : 17h–01h", "Ven–Sam : 17h–03h", "Dim : 10h–22h"],
+      "mondayClosed": "Lundi : Fermé"
+    },
+    "mapLabel": "Google Maps",
+    "quote": "Nous vous souhaitons la bienvenue – comme à la maison."
+  },
+  "cookie": {
+    "title": "Paramètres des cookies",
+    "close": "Fermer",
+    "acceptAll": "Tout accepter",
+    "save": "Enregistrer",
+    "essential": {
+      "heading": "Essentiels",
+      "body": "Ces cookies sont nécessaires au fonctionnement du site et ne peuvent pas être désactivés."
+    },
+    "analytics": {
+      "heading": "Analytique",
+      "body": "Nous aident à comprendre comment les visiteurs interagissent avec le site afin de l'améliorer."
+    },
+    "preferences": {
+      "heading": "Préférences",
+      "body": "Permettent au site de mémoriser vos préférences de langue et de région."
+    },
+    "manage": {
+      "heading": "Gestion des cookies",
+      "body": "Vous pouvez modifier ou retirer votre consentement à tout moment. Les paramètres sont stockés dans votre navigateur."
+    }
+  },
+  "footer": {
+    "tagline": "Une cuisine premium camerounaise exclusive rencontre une ambiance lounge raffinée. Live the exceptional.",
+    "visitTitle": "Visitez-nous",
+    "hoursTitle": "Horaires d'ouverture",
+    "hours": ["Mar – Jeu", "Ven – Sam", "Dimanche"],
+    "mondayClosed": "Lundi : Fermé",
+    "copyright": "Tous droits réservés."
+  }
+}

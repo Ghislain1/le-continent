@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import SectionTitle from '../components/SectionTitle'
 
 export default function Contact() {
+  const { t } = useTranslation()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
   const [formState, setFormState] = useState({ name: '', email: '', message: '' })
@@ -23,9 +25,9 @@ export default function Contact() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,theme(colors.bronze.700/0.15),transparent_70%)]" />
       <div className="max-w-6xl mx-auto relative">
         <SectionTitle
-          subtitle="Kontakt"
-          title="Schreib uns"
-          scriptText="Wir freuen uns auf dich"
+          subtitle={t('contact.subtitle')}
+          title={t('contact.title')}
+          scriptText={t('contact.script')}
         />
 
         <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mt-8">
@@ -45,14 +47,14 @@ export default function Contact() {
                   <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
                 </svg>
-                <p className="font-heading text-gold-400 text-xl mb-2">Nachricht gesendet!</p>
-                <p className="text-cream-100/60 text-sm font-body">Wir melden uns in Kürze bei dir.</p>
+                <p className="font-heading text-gold-400 text-xl mb-2">{t('contact.form.successTitle')}</p>
+                <p className="text-cream-100/60 text-sm font-body">{t('contact.form.successText')}</p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label className="block text-xs tracking-[0.2em] uppercase font-body font-medium text-cream-100/50 mb-2">
-                    Name
+                    {t('contact.form.name')}
                   </label>
                   <input
                     type="text"
@@ -60,12 +62,12 @@ export default function Contact() {
                     value={formState.name}
                     onChange={(e) => setFormState(prev => ({ ...prev, name: e.target.value }))}
                     className="w-full bg-charcoal-800/50 border border-gold-400/20 px-4 py-3 text-cream-100 font-body text-sm focus:border-gold-400/60 focus:outline-none transition-colors placeholder:text-cream-100/20"
-                    placeholder="Dein Name"
+                    placeholder={t('contact.form.namePlaceholder')}
                   />
                 </div>
                 <div>
                   <label className="block text-xs tracking-[0.2em] uppercase font-body font-medium text-cream-100/50 mb-2">
-                    E-Mail
+                    {t('contact.form.email')}
                   </label>
                   <input
                     type="email"
@@ -73,12 +75,12 @@ export default function Contact() {
                     value={formState.email}
                     onChange={(e) => setFormState(prev => ({ ...prev, email: e.target.value }))}
                     className="w-full bg-charcoal-800/50 border border-gold-400/20 px-4 py-3 text-cream-100 font-body text-sm focus:border-gold-400/60 focus:outline-none transition-colors placeholder:text-cream-100/20"
-                    placeholder="deine@email.de"
+                    placeholder={t('contact.form.emailPlaceholder')}
                   />
                 </div>
                 <div>
                   <label className="block text-xs tracking-[0.2em] uppercase font-body font-medium text-cream-100/50 mb-2">
-                    Nachricht
+                    {t('contact.form.message')}
                   </label>
                   <textarea
                     required
@@ -86,7 +88,7 @@ export default function Contact() {
                     value={formState.message}
                     onChange={(e) => setFormState(prev => ({ ...prev, message: e.target.value }))}
                     className="w-full bg-charcoal-800/50 border border-gold-400/20 px-4 py-3 text-cream-100 font-body text-sm focus:border-gold-400/60 focus:outline-none transition-colors placeholder:text-cream-100/20 resize-none"
-                    placeholder="Deine Nachricht an uns..."
+                    placeholder={t('contact.form.messagePlaceholder')}
                   />
                 </div>
                 <motion.button
@@ -99,7 +101,7 @@ export default function Contact() {
                     backgroundSize: '200% 200%',
                   }}
                 >
-                  <span className="relative z-10">Nachricht senden</span>
+                  <span className="relative z-10">{t('contact.form.send')}</span>
                 </motion.button>
               </form>
             )}
@@ -115,25 +117,25 @@ export default function Contact() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <InfoBox
                 icon="map"
-                title="Adresse"
+                title={t('contact.info.address')}
                 lines={['Leunastraße 36', '65929 Frankfurt am Main']}
               />
               <InfoBox
                 icon="phone"
-                title="Telefon"
+                title={t('contact.info.phone')}
                 lines={['+49 69 00000000']}
                 href="tel:+496900000000"
               />
               <InfoBox
                 icon="mail"
-                title="E-Mail"
+                title={t('contact.info.email')}
                 lines={['info@lecontinent.de']}
                 href="mailto:info@lecontinent.de"
               />
               <InfoBox
                 icon="clock"
-                title="Öffnungszeiten"
-                lines={['Di–Do: 17–01 Uhr', 'Fr–Sa: 17–03 Uhr', 'So: 10–22 Uhr']}
+                title={t('contact.info.hours')}
+                lines={t('contact.info.hoursLines', { returnObjects: true })}
               />
             </div>
 
@@ -144,7 +146,7 @@ export default function Contact() {
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                     <circle cx="12" cy="10" r="3" />
                   </svg>
-                  <p className="font-heading text-gold-400 text-sm">Google Maps</p>
+                  <p className="font-heading text-gold-400 text-sm">{t('contact.mapLabel')}</p>
                   <p className="text-cream-100/40 text-xs font-body mt-1">Leunastraße 36, 65929 Frankfurt</p>
                 </div>
               </div>
@@ -152,7 +154,7 @@ export default function Contact() {
 
             <div className="border border-gold-400/10 p-5">
               <p className="font-script text-gold-400 text-lg italic text-center">
-                "Wir heißen dich willkommen – comme à la maison."
+                {t('contact.quote')}
               </p>
             </div>
           </motion.div>

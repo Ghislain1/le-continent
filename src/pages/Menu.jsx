@@ -1,81 +1,38 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import SectionTitle from '../components/SectionTitle'
 
-const categories = [
-  { id: 'all', label: 'Alle' },
-  { id: 'mains', label: 'Hauptgerichte' },
-  { id: 'drinks', label: 'Getränke' },
-  { id: 'specialties', label: 'Spezialitäten' },
-]
+const categoryIds = ['all', 'mains', 'drinks', 'specialties']
 
-const menuItems = [
-  {
-    id: 1, category: 'mains', name: 'Dimanche Taro', price: '24,90 €',
-    desc: 'Traditionelles Taro-Gericht mit Erdnuss-Sauce, serviert mit Kochbananen und saisonalem Gemüse.',
-    tags: ['Signature', 'Traditionell'],
-  },
-  {
-    id: 2, category: 'mains', name: 'Poulet DG', price: '22,50 €',
-    desc: 'Kamerunisches Hähnchengericht mit Plantains, Gemüse und einer würzigen Tomaten-Crema.',
-    tags: ['Klassiker'],
-  },
-  {
-    id: 3, category: 'mains', name: 'Ndolé', price: '26,00 €',
-    desc: 'Bitterblätter-Eintopf mit Garnelen, Erdnüssen und Palmöl – ein kulinarisches Highlight.',
-    tags: ['Traditionell', 'Fisch'],
-  },
-  {
-    id: 4, category: 'mains', name: 'Poisson Braisé', price: '28,50 €',
-    desc: 'Gegrillter Zander mit würziger Marinade, dazu Maniok und grüne Bohnen.',
-    tags: ['Fisch', 'Gegrillt'],
-  },
-  {
-    id: 5, category: 'drinks', name: 'LE CONTINENT Cocktail', price: '14,00 €',
-    desc: 'Hauskreation aus Mango-Passionsfrucht, Wodka, Limette & einem Hauch Minze.',
-    tags: ['Signature', 'Cocktail'],
-  },
-  {
-    id: 6, category: 'drinks', name: 'Afrikanischer Eistee', price: '6,50 €',
-    desc: 'Hibiskus-Ingwer-Tee mit Honig und frischer Minze – erfrischend & authentisch.',
-    tags: ['Erfrischung'],
-  },
-  {
-    id: 7, category: 'drinks', name: 'Premium Weinauswahl', price: 'ab 9,00 €',
-    desc: 'Erlesene Weine aus Südafrika, Frankreich und Deutschland – auf Anfrage empfehlen wir gern.',
-    tags: ['Wein'],
-  },
-  {
-    id: 8, category: 'drinks', name: 'Mocktail Passion', price: '8,50 €',
-    desc: 'Alkoholfreier Genuss aus Maracuja, Kokosmilch und Limette.',
-    tags: ['Mocktail'],
-  },
-  {
-    id: 9, category: 'specialties', name: 'Trio de Dips', price: '12,00 €',
-    desc: 'Drei hausgemachte Dips: Erdnuss, Avocado, Tomaten-Chili – mit Maniok-Chips.',
-    tags: ['Starter', 'Teilen'],
-  },
-  {
-    id: 10, category: 'specialties', name: 'Brochettes Variées', price: '18,50 €',
-    desc: 'Spieße vom Rind, Hähnchen und Garnelen mit Yakitori-Glasur und Gemüse.',
-    tags: ['Grill', 'Teilen'],
-  },
-  {
-    id: 11, category: 'specialties', name: 'Café Touba', price: '5,00 €',
-    desc: 'Senegalesischer Kaffee mit Nelken und schwarzem Pfeffer – ein energiegeladener Genuss.',
-    tags: ['Kaffee', 'Authentisch'],
-  },
-  {
-    id: 12, category: 'specialties', name: 'Maisch-Mix Platte', price: '34,00 €',
-    desc: 'Große Degustationsplatte für zwei Personen mit verschiedenen kamerunischen Spezialitäten.',
-    tags: ['Teilen', 'Degustation'],
-  },
+const staticItems = [
+  { id: 1, category: 'mains', name: 'Dimanche Taro', price: '24,90 €' },
+  { id: 2, category: 'mains', name: 'Poulet DG', price: '22,50 €' },
+  { id: 3, category: 'mains', name: 'Ndolé', price: '26,00 €' },
+  { id: 4, category: 'mains', name: 'Poisson Braisé', price: '28,50 €' },
+  { id: 5, category: 'drinks', name: 'LE CONTINENT Cocktail', price: '14,00 €' },
+  { id: 6, category: 'drinks', name: 'Afrikanischer Eistee', price: '6,50 €' },
+  { id: 7, category: 'drinks', name: 'Premium Weinauswahl', price: 'ab 9,00 €' },
+  { id: 8, category: 'drinks', name: 'Mocktail Passion', price: '8,50 €' },
+  { id: 9, category: 'specialties', name: 'Trio de Dips', price: '12,00 €' },
+  { id: 10, category: 'specialties', name: 'Brochettes Variées', price: '18,50 €' },
+  { id: 11, category: 'specialties', name: 'Café Touba', price: '5,00 €' },
+  { id: 12, category: 'specialties', name: 'Maisch-Mix Platte', price: '34,00 €' },
 ]
 
 export default function Menu() {
+  const { t } = useTranslation()
   const [activeCategory, setActiveCategory] = useState('all')
   const ref = useRef(null)
+
+  const categories = categoryIds.map(id => ({ id, label: t(`menu.categories.${id}`) }))
+  const transItems = t('menu.items', { returnObjects: true })
+  const menuItems = staticItems.map((item, i) => ({
+    ...item,
+    desc: transItems[i]?.desc || item.desc,
+    tags: transItems[i]?.tags || [],
+  }))
 
   const filteredItems = activeCategory === 'all'
     ? menuItems
@@ -86,9 +43,9 @@ export default function Menu() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,theme(colors.bronze.700/0.15),transparent_70%)]" />
       <div className="max-w-6xl mx-auto relative">
         <SectionTitle
-          subtitle="Unsere Karte"
-          title="Speisekarte"
-          scriptText="Aromen die verbinden"
+          subtitle={t('menu.subtitle')}
+          title={t('menu.title')}
+          scriptText={t('menu.script')}
         />
 
         {/* FILTER TABS */}

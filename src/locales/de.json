@@ -1,0 +1,193 @@
+{
+  "nav": {
+    "home": "Home",
+    "menu": "Speisekarte",
+    "events": "Events",
+    "gallery": "Galerie",
+    "contact": "Kontakt",
+    "reserve": "Reservieren",
+    "openMenu": "Menü öffnen"
+  },
+  "hero": {
+    "tagline": "Kamerunisches Premium-Restaurant",
+    "viewMenu": "Speisekarte ansehen",
+    "reserveTable": "Tisch reservieren",
+    "sideText": "LIVE THE EXCEPTIONAL"
+  },
+  "special": {
+    "subtitle": "Sonntags-Special",
+    "title": "Dimanche Taro",
+    "script": "Ein Sonntag wie in Kamerun",
+    "signature": "Signature Dish",
+    "heading": "Traditioneller Taro-Genuss",
+    "paragraph": "Unser Signature-Gericht {{dish}} vereint traditionelle kamerunische Aromen mit moderner Präsentation. Zarte Taro-Wurzeln, verfeinert mit erlesenen Gewürzen und serviert mit saisonalen Beilagen – ein kulinarisches Erlebnis, das Sie direkt nach Zentralafrika entführt.",
+    "points": [
+      "Frisch zubereitet mit importierten Taro-Wurzeln",
+      "Begleitet von hausgemachten Saucen",
+      "Vegetarische & vegane Optionen verfügbar"
+    ],
+    "badge1": "100% LOKALE AROMEN",
+    "badge2": "MIT LEIDENSCHAFT ZUBEREITET"
+  },
+  "features": {
+    "subtitle": "Warum uns wählen",
+    "title": "Das LE CONTINENT Erlebnis",
+    "script": "Mehr als nur ein Restaurant",
+    "items": [
+      { "title": "Premium Drinks", "desc": "Erlesene Cocktails & exklusive Spirituosen aus aller Welt." },
+      { "title": "Unique Ambiance", "desc": "Luxuriöses Lounge-Ambiente mit afrikanisch-europäischem Flair." },
+      { "title": "Finest Sounds", "desc": "Live DJ-Sets & entspannte Klänge an jedem Wochenende." },
+      { "title": "Exclusive Events", "desc": "Private Dining, VIP-Abende & kulturelle Highlights." }
+    ],
+    "cta": "Jeden Sonntag ab 10 Uhr",
+    "ctaScript": "Dimanche Taro – Sei dabei!"
+  },
+  "galleryPreview": {
+    "subtitle": "Einblicke",
+    "title": "Unsere Galerie",
+    "script": "Momente festgehalten",
+    "viewAll": "Alle ansehen"
+  },
+  "menu": {
+    "subtitle": "Unsere Karte",
+    "title": "Speisekarte",
+    "script": "Aromen die verbinden",
+    "categories": {
+      "all": "Alle",
+      "mains": "Hauptgerichte",
+      "drinks": "Getränke",
+      "specialties": "Spezialitäten"
+    },
+    "items": [
+      { "desc": "Traditionelles Taro-Gericht mit Erdnuss-Sauce, serviert mit Kochbananen und saisonalem Gemüse.", "tags": ["Signature", "Traditionell"] },
+      { "desc": "Kamerunisches Hähnchengericht mit Plantains, Gemüse und einer würzigen Tomaten-Crema.", "tags": ["Klassiker"] },
+      { "desc": "Bitterblätter-Eintopf mit Garnelen, Erdnüssen und Palmöl – ein kulinarisches Highlight.", "tags": ["Traditionell", "Fisch"] },
+      { "desc": "Gegrillter Zander mit würziger Marinade, dazu Maniok und grüne Bohnen.", "tags": ["Fisch", "Gegrillt"] },
+      { "desc": "Hauskreation aus Mango-Passionsfrucht, Wodka, Limette & einem Hauch Minze.", "tags": ["Signature", "Cocktail"] },
+      { "desc": "Hibiskus-Ingwer-Tee mit Honig und frischer Minze – erfrischend & authentisch.", "tags": ["Erfrischung"] },
+      { "desc": "Erlesene Weine aus Südafrika, Frankreich und Deutschland – auf Anfrage empfehlen wir gern.", "tags": ["Wein"] },
+      { "desc": "Alkoholfreier Genuss aus Maracuja, Kokosmilch und Limette.", "tags": ["Mocktail"] },
+      { "desc": "Drei hausgemachte Dips: Erdnuss, Avocado, Tomaten-Chili – mit Maniok-Chips.", "tags": ["Starter", "Teilen"] },
+      { "desc": "Spieße vom Rind, Hähnchen und Garnelen mit Yakitori-Glasur und Gemüse.", "tags": ["Grill", "Teilen"] },
+      { "desc": "Senegalesischer Kaffee mit Nelken und schwarzem Pfeffer – ein energiegeladener Genuss.", "tags": ["Kaffee", "Authentisch"] },
+      { "desc": "Große Degustationsplatte für zwei Personen mit verschiedenen kamerunischen Spezialitäten.", "tags": ["Teilen", "Degustation"] }
+    ]
+  },
+  "events": {
+    "subtitle": "Events & Veranstaltungen",
+    "title": "Erlebe LE CONTINENT",
+    "script": "Momente die bleiben",
+    "items": [
+      {
+        "subtitle": "Sonntags-Special",
+        "day": "Jeden Sonntag",
+        "time": "10:00 – 22:00 Uhr",
+        "desc": "Unser Signature-Event: Genießen Sie traditionelle kamerunische Gerichte in entspannter Lounge-Atmosphäre. Live-Kochstationen und authentische Musik begleiten Ihren Sonntag.",
+        "highlights": ["Live-Kochshow", "Signature Cocktails", "Family-Friendly"]
+      },
+      {
+        "subtitle": "Wochenend-Event",
+        "day": "Jeden Freitag & Samstag",
+        "time": "20:00 – 02:00 Uhr",
+        "desc": "Erleben Sie Live-Performances von regionalen und internationalen Künstlern. Von Afrobeat über Jazz bis hin zu modernen Lounge-Klängen – für jede Stimmung ist gesorgt.",
+        "highlights": ["Live-Bands & DJs", "Tanzen & Genießen", "VIP-Area"]
+      },
+      {
+        "subtitle": "Exklusiv & Privat",
+        "day": "Nach Vereinbarung",
+        "time": "Individuelle Planung",
+        "desc": "Ob Geburtstage, Firmenevents oder besondere Anlässe – wir gestalten Ihren Abend exklusiv nach Ihren Wünschen. Unser Team kümmert sich um jedes Detail.",
+        "highlights": ["Private Lounge", "Personalisiertes Menü", "Full Service"]
+      },
+      {
+        "subtitle": "Monats-Special",
+        "day": "Jeden 1. Samstag im Monat",
+        "time": "18:00 – 23:00 Uhr",
+        "desc": "Lassen Sie sich von einem mehrgängigen Überraschungsmenü durch die Aromen Zentralafrikas führen. Jeder Monat enthüllt eine neue kulinarische Geschichte.",
+        "highlights": ["4-Gänge-Menü", "Weinbegleitung", "Limited Seats"]
+      }
+    ]
+  },
+  "gallery": {
+    "subtitle": "Eindrücke",
+    "title": "Galerie",
+    "script": "Ein Blick in unsere Welt",
+    "categories": {
+      "all": "Alle",
+      "ambient": "Ambiente",
+      "food": "Speisen",
+      "drinks": "Getränke",
+      "events": "Events"
+    },
+    "empty": "Keine Bilder in dieser Kategorie.",
+    "close": "Schließen",
+    "labels": {
+      "ambient": "Ambiente",
+      "food": "Speisen",
+      "drinks": "Getränke",
+      "events": "Events"
+    },
+    "captions": {
+      "ambient": "Atmosphäre die verzaubert",
+      "food": "Aromen die verbinden",
+      "drinks": "Genuss im Glas",
+      "events": "Momente die bleiben"
+    }
+  },
+  "contact": {
+    "subtitle": "Kontakt",
+    "title": "Schreib uns",
+    "script": "Wir freuen uns auf dich",
+    "form": {
+      "name": "Name",
+      "email": "E-Mail",
+      "message": "Nachricht",
+      "namePlaceholder": "Dein Name",
+      "emailPlaceholder": "deine@email.de",
+      "messagePlaceholder": "Deine Nachricht an uns...",
+      "send": "Nachricht senden",
+      "successTitle": "Nachricht gesendet!",
+      "successText": "Wir melden uns in Kürze bei dir."
+    },
+    "info": {
+      "address": "Adresse",
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "hours": "Öffnungszeiten",
+      "hoursLines": ["Di–Do: 17–01 Uhr", "Fr–Sa: 17–03 Uhr", "So: 10–22 Uhr"],
+      "mondayClosed": "Montag: Ruhetag"
+    },
+    "mapLabel": "Google Maps",
+    "quote": "Wir heißen dich willkommen – comme à la maison."
+  },
+  "cookie": {
+    "title": "Cookie-Einstellungen",
+    "close": "Schließen",
+    "acceptAll": "Alle akzeptieren",
+    "save": "Einstellungen speichern",
+    "essential": {
+      "heading": "Notwendig",
+      "body": "Diese Cookies sind für den Betrieb der Website erforderlich und können nicht deaktiviert werden."
+    },
+    "analytics": {
+      "heading": "Analyse",
+      "body": "Helfen uns zu verstehen, wie Besucher mit der Website interagieren, damit wir sie verbessern können."
+    },
+    "preferences": {
+      "heading": "Präferenzen",
+      "body": "Ermöglichen, dass sich die Website an Ihre Sprach- und Regionseinstellungen erinnert."
+    },
+    "manage": {
+      "heading": "Cookie-Verwaltung",
+      "body": "Sie können jederzeit Ihre Einwilligung ändern oder widerrufen. Die Einstellungen werden in Ihrem Browser gespeichert."
+    }
+  },
+  "footer": {
+    "tagline": "Exklusive kamerunische Premium-Küche trifft auf erlesene Lounge-Atmosphäre. Live the exceptional.",
+    "visitTitle": "Besuche uns",
+    "hoursTitle": "Öffnungszeiten",
+    "hours": ["Di – Do", "Fr – Sa", "Sonntag"],
+    "mondayClosed": "Montag: Ruhetag",
+    "copyright": "Alle Rechte vorbehalten."
+  }
+}

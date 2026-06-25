@@ -1,0 +1,193 @@
+{
+  "nav": {
+    "home": "Home",
+    "menu": "Menu",
+    "events": "Events",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "reserve": "Reserve Now",
+    "openMenu": "Open menu"
+  },
+  "hero": {
+    "tagline": "Cameroonian Premium Restaurant",
+    "viewMenu": "View Menu",
+    "reserveTable": "Reserve a Table",
+    "sideText": "LIVE THE EXCEPTIONAL"
+  },
+  "special": {
+    "subtitle": "Sunday Special",
+    "title": "Dimanche Taro",
+    "script": "A Sunday like in Cameroon",
+    "signature": "Signature Dish",
+    "heading": "Traditional Taro Experience",
+    "paragraph": "Our signature dish {{dish}} combines traditional Cameroonian flavors with modern presentation. Tender taro roots, refined with exquisite spices and served with seasonal sides – a culinary experience that transports you straight to Central Africa.",
+    "points": [
+      "Freshly prepared with imported taro roots",
+      "Accompanied by homemade sauces",
+      "Vegetarian & vegan options available"
+    ],
+    "badge1": "100% LOCAL FLAVORS",
+    "badge2": "PREPARED WITH PASSION"
+  },
+  "features": {
+    "subtitle": "Why Choose Us",
+    "title": "The LE CONTINENT Experience",
+    "script": "More than just a restaurant",
+    "items": [
+      { "title": "Premium Drinks", "desc": "Fine cocktails & exclusive spirits from around the world." },
+      { "title": "Unique Ambiance", "desc": "Luxurious lounge atmosphere with Afro-European flair." },
+      { "title": "Finest Sounds", "desc": "Live DJ sets & relaxed tunes every weekend." },
+      { "title": "Exclusive Events", "desc": "Private dining, VIP evenings & cultural highlights." }
+    ],
+    "cta": "Every Sunday from 10 AM",
+    "ctaScript": "Dimanche Taro – Join us!"
+  },
+  "galleryPreview": {
+    "subtitle": "Insights",
+    "title": "Our Gallery",
+    "script": "Moments captured",
+    "viewAll": "View All"
+  },
+  "menu": {
+    "subtitle": "Our Menu",
+    "title": "Menu",
+    "script": "Flavors that connect",
+    "categories": {
+      "all": "All",
+      "mains": "Main Courses",
+      "drinks": "Drinks",
+      "specialties": "Specialties"
+    },
+    "items": [
+      { "desc": "Traditional taro dish with peanut sauce, served with plantains and seasonal vegetables.", "tags": ["Signature", "Traditional"] },
+      { "desc": "Cameroonian chicken dish with plantains, vegetables and a spicy tomato cream.", "tags": ["Classic"] },
+      { "desc": "Bitter leaf stew with shrimp, peanuts and palm oil – a culinary highlight.", "tags": ["Traditional", "Fish"] },
+      { "desc": "Grilled pike-perch with spicy marinade, served with cassava and green beans.", "tags": ["Fish", "Grilled"] },
+      { "desc": "House creation of mango-passion fruit, vodka, lime & a hint of mint.", "tags": ["Signature", "Cocktail"] },
+      { "desc": "Hibiscus ginger tea with honey and fresh mint – refreshing & authentic.", "tags": ["Refreshment"] },
+      { "desc": "Fine wines from South Africa, France and Germany – we're happy to recommend.", "tags": ["Wine"] },
+      { "desc": "Non-alcoholic bliss made from passion fruit, coconut milk and lime.", "tags": ["Mocktail"] },
+      { "desc": "Three homemade dips: peanut, avocado, tomato-chili – with cassava chips.", "tags": ["Starter", "Sharing"] },
+      { "desc": "Skewers of beef, chicken and shrimp with yakitori glaze and vegetables.", "tags": ["Grill", "Sharing"] },
+      { "desc": "Senegalese coffee with cloves and black pepper – an energizing treat.", "tags": ["Coffee", "Authentic"] },
+      { "desc": "Large tasting platter for two with various Cameroonian specialties.", "tags": ["Sharing", "Tasting"] }
+    ]
+  },
+  "events": {
+    "subtitle": "Events & Occasions",
+    "title": "Experience LE CONTINENT",
+    "script": "Moments that last",
+    "items": [
+      {
+        "subtitle": "Sunday Special",
+        "day": "Every Sunday",
+        "time": "10:00 AM – 10:00 PM",
+        "desc": "Our signature event: Enjoy traditional Cameroonian dishes in a relaxed lounge atmosphere. Live cooking stations and authentic music accompany your Sunday.",
+        "highlights": ["Live Cooking Show", "Signature Cocktails", "Family-Friendly"]
+      },
+      {
+        "subtitle": "Weekend Event",
+        "day": "Every Friday & Saturday",
+        "time": "8:00 PM – 2:00 AM",
+        "desc": "Experience live performances by local and international artists. From Afrobeat to jazz to modern lounge sounds – there's something for every mood.",
+        "highlights": ["Live Bands & DJs", "Dance & Enjoy", "VIP Area"]
+      },
+      {
+        "subtitle": "Exclusive & Private",
+        "day": "By Appointment",
+        "time": "Individual Planning",
+        "desc": "Whether birthdays, corporate events or special occasions – we design your evening exclusively according to your wishes. Our team takes care of every detail.",
+        "highlights": ["Private Lounge", "Personalized Menu", "Full Service"]
+      },
+      {
+        "subtitle": "Monthly Special",
+        "day": "Every 1st Saturday of the month",
+        "time": "6:00 PM – 11:00 PM",
+        "desc": "Let yourself be guided through the flavors of Central Africa with a multi-course surprise menu. Each month reveals a new culinary story.",
+        "highlights": ["4-Course Menu", "Wine Pairing", "Limited Seats"]
+      }
+    ]
+  },
+  "gallery": {
+    "subtitle": "Impressions",
+    "title": "Gallery",
+    "script": "A look into our world",
+    "categories": {
+      "all": "All",
+      "ambient": "Ambience",
+      "food": "Food",
+      "drinks": "Drinks",
+      "events": "Events"
+    },
+    "empty": "No images in this category.",
+    "close": "Close",
+    "labels": {
+      "ambient": "Ambience",
+      "food": "Food",
+      "drinks": "Drinks",
+      "events": "Events"
+    },
+    "captions": {
+      "ambient": "An enchanting atmosphere",
+      "food": "Flavors that connect",
+      "drinks": "Enjoyment in a glass",
+      "events": "Moments that last"
+    }
+  },
+  "contact": {
+    "subtitle": "Contact",
+    "title": "Write to Us",
+    "script": "We look forward to hearing from you",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "namePlaceholder": "Your Name",
+      "emailPlaceholder": "your@email.com",
+      "messagePlaceholder": "Your message to us...",
+      "send": "Send Message",
+      "successTitle": "Message sent!",
+      "successText": "We'll get back to you soon."
+    },
+    "info": {
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "hours": "Opening Hours",
+      "hoursLines": ["Tue–Thu: 5 PM – 1 AM", "Fri–Sat: 5 PM – 3 AM", "Sun: 10 AM – 10 PM"],
+      "mondayClosed": "Monday: Closed"
+    },
+    "mapLabel": "Google Maps",
+    "quote": "We welcome you – comme à la maison."
+  },
+  "cookie": {
+    "title": "Cookie Settings",
+    "close": "Close",
+    "acceptAll": "Accept All",
+    "save": "Save Settings",
+    "essential": {
+      "heading": "Essential",
+      "body": "These cookies are necessary for the website to function and cannot be disabled."
+    },
+    "analytics": {
+      "heading": "Analytics",
+      "body": "Help us understand how visitors interact with the website so we can improve it."
+    },
+    "preferences": {
+      "heading": "Preferences",
+      "body": "Allow the website to remember your language and region preferences."
+    },
+    "manage": {
+      "heading": "Cookie Management",
+      "body": "You can change or withdraw your consent at any time. Settings are stored in your browser."
+    }
+  },
+  "footer": {
+    "tagline": "Exclusive Cameroonian premium cuisine meets exquisite lounge atmosphere. Live the exceptional.",
+    "visitTitle": "Visit Us",
+    "hoursTitle": "Opening Hours",
+    "hours": ["Tue – Thu", "Fri – Sat", "Sunday"],
+    "mondayClosed": "Monday: Closed",
+    "copyright": "All rights reserved."
+  }
+}

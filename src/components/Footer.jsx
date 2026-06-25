@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 
 const socials = [
@@ -8,8 +8,9 @@ const socials = [
 ]
 
 export default function Footer() {
+  const { t } = useTranslation()
   return (
-    <footer className="bg-charcoal-900 border-t border-gold-400/20 relative overflow-hidden">
+    <footer data-nav="contact" className="bg-charcoal-900 border-t border-gold-400/20 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,theme(colors.bronze.700/0.3),transparent_70%)]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 relative">
@@ -24,13 +25,12 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-cream-100/60 text-sm leading-relaxed font-body">
-              Exklusive kamerunische Premium-Küche trifft auf erlesene Lounge-Atmosphäre.
-              Live the exceptional.
+              {t('footer.tagline')}
             </p>
           </div>
 
           <div>
-            <h4 className="font-heading text-gold-400 text-lg mb-6">Besuche uns</h4>
+            <h4 className="font-heading text-gold-400 text-lg mb-6">{t('footer.visitTitle')}</h4>
             <div className="space-y-3 text-cream-100/70 text-sm font-body">
               <p>Leunastraße 36</p>
               <p>65929 Frankfurt am Main</p>
@@ -46,21 +46,21 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-heading text-gold-400 text-lg mb-6">Öffnungszeiten</h4>
+            <h4 className="font-heading text-gold-400 text-lg mb-6">{t('footer.hoursTitle')}</h4>
             <div className="space-y-3 text-cream-100/70 text-sm font-body">
               <div className="flex justify-between">
-                <span>Di – Do</span>
+                <span>{t('footer.hours.0')}</span>
                 <span className="text-cream-100/50">17:00 – 01:00</span>
               </div>
               <div className="flex justify-between">
-                <span>Fr – Sa</span>
+                <span>{t('footer.hours.1')}</span>
                 <span className="text-cream-100/50">17:00 – 03:00</span>
               </div>
               <div className="flex justify-between text-gold-400">
-                <span>Sonntag</span>
+                <span>{t('footer.hours.2')}</span>
                 <span>10:00 – 22:00</span>
               </div>
-              <p className="text-xs text-cream-100/40 pt-2">Montag: Ruhetag</p>
+              <p className="text-xs text-cream-100/40 pt-2">{t('footer.mondayClosed')}</p>
             </div>
           </div>
         </div>
@@ -80,7 +80,7 @@ export default function Footer() {
             ))}
           </div>
           <p className="text-cream-100/30 text-xs tracking-wider font-body">
-            &copy; {new Date().getFullYear()} LE CONTINENT LOUNGE • BAR. Alle Rechte vorbehalten.
+            &copy; {new Date().getFullYear()} LE CONTINENT LOUNGE • BAR. {t('footer.copyright')}
           </p>
         </div>
       </div>

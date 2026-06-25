@@ -46,6 +46,15 @@
   }
 }
 
+:root {
+  --color-primary: #d4af37;
+  --color-bg: #0a0a0a;
+  --color-bg-alt: #1a1410;
+  --color-border: rgba(212, 175, 55, 0.2);
+  --color-text: #f5f0e6;
+  --color-text-muted: rgba(245, 240, 230, 0.6);
+}
+
 html {
   scroll-behavior: smooth;
 }

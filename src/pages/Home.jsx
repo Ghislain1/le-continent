@@ -1,15 +1,9 @@
 import { useRef, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import SectionTitle from '../components/SectionTitle'
 import Badge from '../components/Badge'
-
-const features = [
-  { title: 'Premium Drinks', desc: 'Erlesene Cocktails & exklusive Spirituosen aus aller Welt.', icon: 'cocktail' },
-  { title: 'Unique Ambiance', desc: 'Luxuriöses Lounge-Ambiente mit afrikanisch-europäischem Flair.', icon: 'ambiance' },
-  { title: 'Finest Sounds', desc: 'Live DJ-Sets & entspannte Klänge an jedem Wochenende.', icon: 'sounds' },
-  { title: 'Exclusive Events', desc: 'Private Dining, VIP-Abende & kulturelle Highlights.', icon: 'events' },
-]
 
 const sparklePositions = [
   { x: '10%', y: '15%', size: 4, delay: 0 },
@@ -32,11 +26,14 @@ const iconPaths = {
 }
 
 export default function Home() {
+  const { t } = useTranslation()
   const heroRef = useRef(null)
   const specialRef = useRef(null)
   const featuresRef = useRef(null)
   const specialInView = useInView(specialRef, { once: true, margin: '-80px' })
   const featuresInView = useInView(featuresRef, { once: true, margin: '-80px' })
+
+  const features = useMemo(() => t('features.items', { returnObjects: true }), [t])
 
   const heroTextVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -49,7 +46,7 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section ref={heroRef} className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+      <section id="hero" data-nav="hero" ref={heroRef} className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <video
             autoPlay
@@ -88,7 +85,7 @@ export default function Home() {
           <motion.p custom={4} initial="hidden" animate="visible" variants={heroTextVariants}
             className="font-body text-sm sm:text-base text-cream-100/50 tracking-[0.3em] uppercase mt-6"
           >
-            Kamerunisches Premium-Restaurant
+            {t('hero.tagline')}
           </motion.p>
           <motion.div custom={5} initial="hidden" animate="visible" variants={heroTextVariants}
             className="flex flex-col sm:flex-row gap-4 justify-center mt-10"
@@ -100,13 +97,22 @@ export default function Home() {
                 backgroundSize: '200% 200%',
               }}
             >
-              <span className="relative z-10">Speisekarte ansehen</span>
+              <span className="relative z-10">{t('hero.viewMenu')}</span>
             </Link>
             <Link to="/contact"
               className="px-8 py-3.5 rounded-full border border-gold-400 text-gold-400 font-body font-semibold text-sm tracking-widest uppercase hover:bg-gold-400 hover:text-charcoal-900 transition-all duration-300 animate-fire"
             >
-              <span className="relative z-10">Tisch reservieren</span>
+              <span className="relative z-10">{t('hero.reserveTable')}</span>
             </Link>
+            <a
+              href="https://wa.me/491724730305"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-[#25D366]/50 text-[#25D366] font-body font-semibold text-sm tracking-widest uppercase hover:bg-[#25D366] hover:text-white transition-all duration-300"
+            >
+              <WhatsAppIconHero />
+              WhatsApp
+            </a>
           </motion.div>
         </div>
 
@@ -119,7 +125,7 @@ export default function Home() {
           <div className="bg-gradient-to-b from-gold-400/10 to-gold-400/5 backdrop-blur-sm border-l border-gold-400/30 py-6 px-3">
             <p className="font-script text-gold-400 text-sm writing-mode-vertical text-center"
               style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
-              LIVE THE EXCEPTIONAL
+              {t('hero.sideText')}
             </p>
           </div>
         </motion.div>
@@ -159,13 +165,13 @@ export default function Home() {
       </section>
 
       {/* SONNTAGS-SPECIAL */}
-      <section ref={specialRef} className="relative py-20 lg:py-28 px-4">
+      <section id="special" data-nav="special" ref={specialRef} className="relative py-20 lg:py-28 px-4">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,theme(colors.bronze.700/0.2),transparent_70%)]" />
         <div className="max-w-6xl mx-auto relative">
           <SectionTitle
-            subtitle="Sonntags-Special"
-            title="Dimanche Taro"
-            scriptText="Ein Sonntag wie in Kamerun"
+            subtitle={t('special.subtitle')}
+            title={t('special.title')}
+            scriptText={t('special.script')}
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center mt-8">
@@ -186,14 +192,14 @@ export default function Home() {
                 </div>
                 <div className="absolute top-4 left-4">
                   <span className="font-heading text-gold-400 text-xs tracking-[0.2em] uppercase bg-charcoal-900/80 px-3 py-1 border border-gold-400/30">
-                    Signature Dish
+                    {t('special.signature')}
                   </span>
                 </div>
               </div>
 
               <div className="flex justify-center gap-6 mt-6 lg:mt-0 lg:absolute lg:-right-20 lg:top-1/2 lg:-translate-y-1/2">
-                <Badge text="100% LOKALE AROMEN" />
-                <Badge text="MIT LEIDENSCHAFT ZUBEREITET" />
+                <Badge text={t('special.badge1')} />
+                <Badge text={t('special.badge2')} />
               </div>
             </motion.div>
 
@@ -205,27 +211,18 @@ export default function Home() {
             >
               <div className="border-l-2 border-gold-400/30 pl-6">
                 <h3 className="font-heading text-2xl sm:text-3xl text-gold-400 mb-4">
-                  Traditioneller Taro-Genuss
+                  {t('special.heading')}
                 </h3>
                 <p className="text-cream-100/70 font-body leading-relaxed mb-6">
-                  Unser Signature-Gericht <span className="text-gold-400 italic font-script">Dimanche Taro</span> vereint
-                  traditionelle kamerunische Aromen mit moderner Präsentation. Zarte Taro-Wurzeln,
-                  verfeinert mit erlesenen Gewürzen und serviert mit saisonalen Beilagen – ein
-                  kulinarisches Erlebnis, das Sie direkt nach Zentralafrika entführt.
+                  {t('special.paragraph', { dish: 'Dimanche Taro' })}
                 </p>
                 <div className="space-y-3 text-sm text-cream-100/60 font-body">
-                  <div className="flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold-400" />
-                    <span>Frisch zubereitet mit importierten Taro-Wurzeln</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold-400" />
-                    <span>Begleitet von hausgemachten Saucen</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold-400" />
-                    <span>Vegetarische & vegane Optionen verfügbar</span>
-                  </div>
+                  {t('special.points', { returnObjects: true }).map((point, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-gold-400" />
+                      <span>{point}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </motion.div>
@@ -234,12 +231,12 @@ export default function Home() {
       </section>
 
       {/* FEATURES GRID */}
-      <section ref={featuresRef} className="relative py-20 lg:py-28 px-4 bg-charcoal-800/30">
+      <section id="features" data-nav="features" ref={featuresRef} className="relative py-20 lg:py-28 px-4 bg-charcoal-800/30">
         <div className="max-w-6xl mx-auto">
           <SectionTitle
-            subtitle="Warum uns wählen"
-            title="Das LE CONTINENT Erlebnis"
-            scriptText="Mehr als nur ein Restaurant"
+            subtitle={t('features.subtitle')}
+            title={t('features.title')}
+            scriptText={t('features.script')}
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mt-8">
@@ -260,9 +257,57 @@ export default function Home() {
               <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-gold-400/40" />
               <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-gold-400/40" />
               <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-gold-400/40" />
-              <p className="font-heading text-gold-400 text-lg">Jeden Sonntag ab 10 Uhr</p>
-              <p className="font-script text-cream-100/50 italic text-sm mt-1">Dimanche Taro – Sei dabei!</p>
+              <p className="font-heading text-gold-400 text-lg">{t('features.cta')}</p>
+              <p className="font-script text-cream-100/50 italic text-sm mt-1">{t('features.ctaScript')}</p>
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* GALLERY PREVIEW */}
+      <section id="gallery-preview" data-nav="gallery" className="relative py-20 lg:py-28 px-4">
+        <div className="max-w-6xl mx-auto">
+          <SectionTitle
+            subtitle={t('galleryPreview.subtitle')}
+            title={t('galleryPreview.title')}
+            scriptText={t('galleryPreview.script')}
+          />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8"
+          >
+            {[
+              'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80',
+              'https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=400&q=80',
+              'https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400&q=80',
+              'https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?w=400&q=80',
+            ].map((url, i) => (
+              <div key={i} className="aspect-square overflow-hidden border border-gold-400/10">
+                <img
+                  src={url}
+                  alt={`Gallery ${i + 1}`}
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-center mt-10"
+          >
+            <Link
+              to="/gallery"
+              className="inline-block px-8 py-3 rounded-full border border-gold-400 text-gold-400 text-sm tracking-widest uppercase font-body font-medium hover:bg-gold-400 hover:text-charcoal-900 transition-all duration-300 animate-fire"
+            >
+              {t('galleryPreview.viewAll')}
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -371,6 +416,14 @@ function SparkleOverlay() {
         />
       ))}
     </div>
+  )
+}
+
+function WhatsAppIconHero() {
+  return (
+    <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-1.099-1.004-1.843-2.244-2.058-2.624-.215-.38-.023-.585.163-.774.166-.168.366-.438.549-.657.184-.219.245-.375.367-.625.123-.25.062-.468-.03-.65-.093-.182-.67-1.616-.92-2.213-.242-.575-.487-.575-.67-.585-.173-.01-.372-.01-.571-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.199 2.096 3.2 5.077 4.487.71.306 1.264.493 1.696.631.714.227 1.364.195 1.877.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
   )
 }
 

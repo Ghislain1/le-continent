@@ -1,14 +1,9 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import SectionTitle from '../components/SectionTitle'
 
-const categories = [
-  { id: 'all', label: 'Alle' },
-  { id: 'ambient', label: 'Ambiente' },
-  { id: 'food', label: 'Speisen' },
-  { id: 'drinks', label: 'Getränke' },
-  { id: 'events', label: 'Events' },
-]
+const categoryIds = ['all', 'ambient', 'food', 'drinks', 'events']
 
 const galleryItems = [
   {
@@ -89,9 +84,12 @@ const placeholderSVGs = {
 }
 
 export default function Gallery() {
+  const { t } = useTranslation()
   const [selected, setSelected] = useState(null)
   const [activeCat, setActiveCat] = useState('all')
   const [loadedImages, setLoadedImages] = useState({})
+
+  const categories = categoryIds.map(id => ({ id, label: t(`gallery.categories.${id}`) }))
 
   const filtered = activeCat === 'all'
     ? galleryItems
@@ -122,9 +120,9 @@ export default function Gallery() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,theme(colors.bronze.700/0.1),transparent_70%)]" />
       <div className="max-w-6xl mx-auto relative">
         <SectionTitle
-          subtitle="Eindrücke"
-          title="Galerie"
-          scriptText="Ein Blick in unsere Welt"
+          subtitle={t('gallery.subtitle')}
+          title={t('gallery.title')}
+          scriptText={t('gallery.script')}
         />
 
         {/* FILTER */}
@@ -196,7 +194,7 @@ export default function Gallery() {
                         item.cat === 'drinks' ? 'text-gold-400 bg-gold-400/5 border border-gold-400/20' :
                         'text-cream-100/70 bg-charcoal-800/50 border border-gold-400/10'
                       }`}>
-                        {item.cat === 'ambient' ? 'Ambiente' : item.cat === 'food' ? 'Speisen' : item.cat === 'drinks' ? 'Getränke' : 'Events'}
+                        {t(`gallery.labels.${item.cat}`)}
                       </span>
                     </div>
                     <p className="font-heading text-gold-400 text-sm tracking-wide">
@@ -218,7 +216,7 @@ export default function Gallery() {
         {filtered.length === 0 && (
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             className="text-center text-cream-100/40 font-body text-sm py-20">
-            Keine Bilder in dieser Kategorie.
+            {t('gallery.empty')}
           </motion.p>
         )}
       </div>
@@ -250,7 +248,7 @@ export default function Gallery() {
                     selected.cat === 'drinks' ? 'text-gold-400 bg-gold-400/5 border border-gold-400/20' :
                     'text-cream-100/70 bg-charcoal-800/50 border border-gold-400/10'
                   }`}>
-                    {selected.cat === 'ambient' ? 'Ambiente' : selected.cat === 'food' ? 'Speisen' : selected.cat === 'drinks' ? 'Getränke' : 'Events'}
+                    {t(`gallery.labels.${selected.cat}`)}
                   </span>
                   <p className="font-heading text-gold-400 text-lg">{selected.label}</p>
                 </div>
@@ -258,7 +256,7 @@ export default function Gallery() {
                   onClick={() => setSelected(null)}
                   className="text-cream-100/50 hover:text-cream-100 transition-colors font-body text-xs tracking-widest uppercase"
                 >
-                  Schließen
+                  {t('gallery.close')}
                 </button>
               </div>
 
@@ -284,10 +282,7 @@ export default function Gallery() {
                   {selectedIdx + 1} / {filtered.length}
                 </p>
                 <p className="font-script text-cream-100/50 text-sm italic">
-                  {selected.cat === 'ambient' ? 'Atmosphäre die verzaubert' :
-                   selected.cat === 'food' ? 'Aromen die verbinden' :
-                   selected.cat === 'drinks' ? 'Genuss im Glas' :
-                   'Momente die bleiben'}
+                  {t(`gallery.captions.${selected.cat}`)}
                 </p>
               </div>
 

@@ -1,62 +1,44 @@
+import { useMemo } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import SectionTitle from '../components/SectionTitle'
 
-const events = [
-  {
-    title: 'Dimanche Taro',
-    subtitle: 'Sonntags-Special',
-    day: 'Jeden Sonntag',
-    time: '10:00 – 22:00 Uhr',
-    desc: 'Unser Signature-Event: Genießen Sie traditionelle kamerunische Gerichte in entspannter Lounge-Atmosphäre. Live-Kochstationen und authentische Musik begleiten Ihren Sonntag.',
-    highlights: ['Live-Kochshow', 'Signature Cocktails', 'Family-Friendly'],
-    gradient: 'from-gold-400/20 to-bronze-700/20',
-    border: 'border-gold-400/30',
-  },
-  {
-    title: 'Live Music Nights',
-    subtitle: 'Wochenend-Event',
-    day: 'Jeden Freitag & Samstag',
-    time: '20:00 – 02:00 Uhr',
-    desc: 'Erleben Sie Live-Performances von regionalen und internationalen Künstlern. Von Afrobeat über Jazz bis hin zu modernen Lounge-Klängen – für jede Stimmung ist gesorgt.',
-    highlights: ['Live-Bands & DJs', 'Tanzen & Genießen', 'VIP-Area'],
-    gradient: 'from-gold-400/15 to-charcoal-800/30',
-    border: 'border-gold-400/20',
-  },
-  {
-    title: 'VIP Events',
-    subtitle: 'Exklusiv & Privat',
-    day: 'Nach Vereinbarung',
-    time: 'Individuelle Planung',
-    desc: 'Ob Geburtstage, Firmenevents oder besondere Anlässe – wir gestalten Ihren Abend exklusiv nach Ihren Wünschen. Unser Team kümmert sich um jedes Detail.',
-    highlights: ['Private Lounge', 'Personalisiertes Menü', 'Full Service'],
-    gradient: 'from-gold-400/10 to-bronze-700/30',
-    border: 'border-gold-400/20',
-  },
-  {
-    title: 'Kulinarische Reise',
-    subtitle: 'Monats-Special',
-    day: 'Jeden 1. Samstag im Monat',
-    time: '18:00 – 23:00 Uhr',
-    desc: 'Lassen Sie sich von einem mehrgängigen Überraschungsmenü durch die Aromen Zentralafrikas führen. Jeder Monat enthüllt eine neue kulinarische Geschichte.',
-    highlights: ['4-Gänge-Menü', 'Weinbegleitung', 'Limited Seats'],
-    gradient: 'from-gold-400/12 to-charcoal-800/25',
-    border: 'border-gold-400/15',
-  },
+const eventTitles = ['Dimanche Taro', 'Live Music Nights', 'VIP Events', 'Kulinarische Reise']
+const eventGradients = [
+  'from-gold-400/20 to-bronze-700/20',
+  'from-gold-400/15 to-charcoal-800/30',
+  'from-gold-400/10 to-bronze-700/30',
+  'from-gold-400/12 to-charcoal-800/25',
+]
+const eventBorders = [
+  'border-gold-400/30',
+  'border-gold-400/20',
+  'border-gold-400/20',
+  'border-gold-400/15',
 ]
 
 export default function Events() {
+  const { t } = useTranslation()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
+
+  const transEvents = t('events.items', { returnObjects: true })
+  const events = transEvents.map((e, i) => ({
+    ...e,
+    title: eventTitles[i],
+    gradient: eventGradients[i],
+    border: eventBorders[i],
+  }))
 
   return (
     <section className="pt-28 pb-20 lg:pt-32 lg:pb-28 px-4 relative">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,theme(colors.bronze.700/0.15),transparent_70%)]" />
       <div className="max-w-6xl mx-auto relative">
         <SectionTitle
-          subtitle="Events & Veranstaltungen"
-          title="Erlebe LE CONTINENT"
-          scriptText="Momente die bleiben"
+          subtitle={t('events.subtitle')}
+          title={t('events.title')}
+          scriptText={t('events.script')}
         />
 
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
