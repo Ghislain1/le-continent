@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import { CookieSettingsModal } from './CookieSettingsModal'
+import { useToast } from '../hooks/useToast'
 
 const pageVariants = {
   initial: { opacity: 0, y: 24 },
@@ -30,29 +31,34 @@ interface CookieSettings {
 export default function Layout({ children }: LayoutProps) {
   const { t } = useTranslation()
   const location = useLocation()
+  const { showToast } = useToast()
   const [showBanner, setShowBanner] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
-
+  const localAnalyticsPreferencesKey: string = "LeContinent_Cookie_Consent"
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [location.pathname])
 
   useEffect(() => {
-    const consent = localStorage.getItem('cookie-consent')
+    const consent = localStorage.getItem(localAnalyticsPreferencesKey)
     if (!consent) setShowBanner(true)
   }, [])
 
+  // Handle when user  on Accept All Click
   const handleAcceptAll = () => {
-    localStorage.setItem('cookie-consent', JSON.stringify({ analytics: true, preferences: true }))
+    let consentValue = JSON.stringify({ analytics: true, preferences: true })
+    localStorage.setItem(localAnalyticsPreferencesKey, consentValue)
+    showToast(t('cookie.save'))
     setShowBanner(false)
   }
 
   const handleSave = (settings: CookieSettings) => {
-    localStorage.setItem('cookie-consent', JSON.stringify(settings))
+    localStorage.setItem(localAnalyticsPreferencesKey, JSON.stringify(settings))
     setShowBanner(false)
   }
-
+  // Handle when user  on Cookie Management
   const openModal = () => {
+    showToast("COOKKK")
     setModalOpen(true)
   }
 
