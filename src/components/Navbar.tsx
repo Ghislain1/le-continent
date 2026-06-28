@@ -3,27 +3,35 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 
-const langs = [
+interface Lang {
+  code: string
+  label: string
+}
+
+interface NavLinkItem {
+  path: string
+  label: string
+}
+
+const langs: Lang[] = [
   { code: 'de', label: 'DE' },
   { code: 'en', label: 'EN' },
   { code: 'fr', label: 'FR' },
 ]
 
-const sectionToNav = { hero: 0, special: 1, features: 2, gallery: 3, contact: 4 }
+const sectionToNav: Record<string, number> = { hero: 0, special: 1, features: 2, gallery: 3, contact: 4 }
 const sectionIds = Object.keys(sectionToNav)
-
-const navPaths = ['/', '/menu', '/events', '/gallery', '/contact']
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState(null)
+  const [activeSection, setActiveSection] = useState<string | null>(null)
   const [sectionProgress, setSectionProgress] = useState(0)
   const location = useLocation()
   const isHome = location.pathname === '/'
   const { t, i18n } = useTranslation()
 
-  const navLinks = [
+  const navLinks: NavLinkItem[] = [
     { path: '/', label: t('nav.home') },
     { path: '/menu', label: t('nav.menu') },
     { path: '/events', label: t('nav.events') },
@@ -44,7 +52,7 @@ export default function Navbar() {
   useEffect(() => {
     if (!isHome) { setActiveSection(null); setSectionProgress(0); return }
 
-    const observers = []
+    const observers: IntersectionObserver[] = []
 
     sectionIds.forEach((id) => {
       const el = document.querySelector(`[data-nav="${id}"]`)
@@ -79,8 +87,6 @@ export default function Navbar() {
   const bgClass = scrolled || !isHome
     ? 'bg-charcoal-900/95 backdrop-blur-md shadow-lg shadow-black/30'
     : 'bg-transparent'
-
-  const sectionIndex = activeSection ? sectionIds.indexOf(activeSection) : -1
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${bgClass}`}>
@@ -180,7 +186,7 @@ export default function Navbar() {
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="lg:hidden relative w-10 h-10 flex items-center justify-center text-cream-100"
-            aria-label={t('nav.openMenu')}
+            aria-label={menuOpen ? t('nav.closeMenu', 'Close menu') : t('nav.openMenu')}
           >
             <div className="flex flex-col gap-1.5">
               <motion.span
@@ -266,7 +272,7 @@ export default function Navbar() {
   )
 }
 
-function WhatsAppIcon() {
+function WhatsAppIcon(): React.JSX.Element {
   return (
     <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-1.099-1.004-1.843-2.244-2.058-2.624-.215-.38-.023-.585.163-.774.166-.168.366-.438.549-.657.184-.219.245-.375.367-.625.123-.25.062-.468-.03-.65-.093-.182-.67-1.616-.92-2.213-.242-.575-.487-.575-.67-.585-.173-.01-.372-.01-.571-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.199 2.096 3.2 5.077 4.487.71.306 1.264.493 1.696.631.714.227 1.364.195 1.877.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
@@ -274,7 +280,7 @@ function WhatsAppIcon() {
   )
 }
 
-function WhatsAppIconSmall() {
+function WhatsAppIconSmall(): React.JSX.Element {
   return (
     <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-1.099-1.004-1.843-2.244-2.058-2.624-.215-.38-.023-.585.163-.774.166-.168.366-.438.549-.657.184-.219.245-.375.367-.625.123-.25.062-.468-.03-.65-.093-.182-.67-1.616-.92-2.213-.242-.575-.487-.575-.67-.585-.173-.01-.372-.01-.571-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.199 2.096 3.2 5.077 4.487.71.306 1.264.493 1.696.631.714.227 1.364.195 1.877.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
@@ -282,7 +288,7 @@ function WhatsAppIconSmall() {
   )
 }
 
-function ShieldLogo() {
+function ShieldLogo(): React.JSX.Element {
   return (
     <svg viewBox="0 0 50 60" className="w-10 h-12 lg:w-12 lg:h-14" aria-hidden="true">
       <defs>

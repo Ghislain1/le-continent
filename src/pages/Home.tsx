@@ -5,7 +5,26 @@ import { useTranslation } from 'react-i18next'
 import SectionTitle from '../components/SectionTitle'
 import Badge from '../components/Badge'
 
-const sparklePositions = [
+interface SparklePosition {
+  x: string
+  y: string
+  size: number
+  delay: number
+}
+
+interface FeatureItem {
+  icon: keyof typeof iconPaths
+  title: string
+  desc: string
+}
+
+interface FeatureCardProps {
+  feature: FeatureItem
+  index: number
+  isInView: boolean
+}
+
+const sparklePositions: SparklePosition[] = [
   { x: '10%', y: '15%', size: 4, delay: 0 },
   { x: '85%', y: '20%', size: 3, delay: 0.8 },
   { x: '25%', y: '70%', size: 5, delay: 1.6 },
@@ -27,19 +46,19 @@ const iconPaths = {
 
 export default function Home() {
   const { t } = useTranslation()
-  const heroRef = useRef(null)
-  const specialRef = useRef(null)
-  const featuresRef = useRef(null)
+  const heroRef = useRef<HTMLElement>(null)
+  const specialRef = useRef<HTMLElement>(null)
+  const featuresRef = useRef<HTMLElement>(null)
   const specialInView = useInView(specialRef, { once: true, margin: '-80px' })
   const featuresInView = useInView(featuresRef, { once: true, margin: '-80px' })
 
-  const features = useMemo(() => t('features.items', { returnObjects: true }), [t])
+  const features = useMemo(() => t('features.items', { returnObjects: true }) as FeatureItem[], [t])
 
   const heroTextVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: (i) => ({
+    visible: (i: number) => ({
       opacity: 1, y: 0,
-      transition: { delay: 0.3 + i * 0.15, duration: 0.8, ease: 'easeOut' },
+      transition: { delay: 0.3 + i * 0.15, duration: 0.8, ease: 'easeOut' as const },
     }),
   }
 
@@ -217,7 +236,7 @@ export default function Home() {
                   {t('special.paragraph', { dish: 'Dimanche Taro' })}
                 </p>
                 <div className="space-y-3 text-sm text-cream-100/60 font-body">
-                  {t('special.points', { returnObjects: true }).map((point, i) => (
+                  {(t('special.points', { returnObjects: true }) as string[]).map((point, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <span className="w-1.5 h-1.5 rounded-full bg-gold-400" />
                       <span>{point}</span>
@@ -315,7 +334,7 @@ export default function Home() {
   )
 }
 
-function FeatureCard({ feature, index, isInView }) {
+function FeatureCard({ feature, index, isInView }: FeatureCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -419,7 +438,7 @@ function SparkleOverlay() {
   )
 }
 
-function WhatsAppIconHero() {
+function WhatsAppIconHero(): React.JSX.Element {
   return (
     <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-1.099-1.004-1.843-2.244-2.058-2.624-.215-.38-.023-.585.163-.774.166-.168.366-.438.549-.657.184-.219.245-.375.367-.625.123-.25.062-.468-.03-.65-.093-.182-.67-1.616-.92-2.213-.242-.575-.487-.575-.67-.585-.173-.01-.372-.01-.571-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.199 2.096 3.2 5.077 4.487.71.306 1.264.493 1.696.631.714.227 1.364.195 1.877.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
@@ -427,7 +446,7 @@ function WhatsAppIconHero() {
   )
 }
 
-function ShieldLarge() {
+function ShieldLarge(): React.JSX.Element {
   return (
     <svg viewBox="0 0 50 60" className="w-14 h-16 sm:w-16 sm:h-20 mx-auto mb-4" aria-hidden="true">
       <defs>

@@ -105,10 +105,14 @@ export function CookieSettingsModal({ isOpen, onClose, onAccept, onSave }: Cooki
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm"
             onClick={onClose}
+            aria-hidden="true"
           />
 
           <m.div
             key="cookie-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="cookie-modal-title"
             variants={modalVariants}
             initial="hidden"
             animate="visible"
@@ -146,7 +150,7 @@ export function CookieSettingsModal({ isOpen, onClose, onAccept, onSave }: Cooki
             <div className="pointer-events-auto w-full max-w-lg max-h-[80vh] bg-(--color-bg) rounded-2xl shadow-2xl border border-(--color-border) overflow-y-auto">
               <div className="sticky top-0 z-10 flex items-center gap-3 px-6 py-4 bg-(--color-bg) border-b border-(--color-border) rounded-t-2xl">
                 <Cookie className="h-5 w-5 text-(--color-primary)" />
-                <h2 className="text-lg font-bold text-(--color-text) flex-1">
+                <h2 id="cookie-modal-title" className="text-lg font-bold text-(--color-text) flex-1">
                   {t('cookie.title')}
                 </h2>
                 <button

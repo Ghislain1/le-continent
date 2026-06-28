@@ -187,7 +187,12 @@
     "visitTitle": "Visitez-nous",
     "hoursTitle": "Horaires d'ouverture",
     "hours": ["Mar – Jeu", "Ven – Sam", "Dimanche"],
+    "hourRanges": ["17:00 – 01:00", "17:00 – 03:00", "10:00 – 22:00"],
     "mondayClosed": "Lundi : Fermé",
+    "addressLine1": "Leunastraße 36",
+    "addressLine2": "65929 Frankfurt am Main",
+    "phoneNumber": "+49 69 00000000",
+    "emailAddress": "info@lecontinent.de",
     "copyright": "Tous droits réservés."
   }
 }

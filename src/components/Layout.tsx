@@ -13,12 +13,21 @@ const pageVariants = {
 }
 
 const pageTransition = {
-  type: 'tween',
-  ease: 'anticipate',
+  type: 'tween' as const,
+  ease: 'anticipate' as const,
   duration: 0.4,
 }
 
-export default function Layout({ children }) {
+interface LayoutProps {
+  children: React.ReactNode
+}
+
+interface CookieSettings {
+  analytics: boolean
+  preferences: boolean
+}
+
+export default function Layout({ children }: LayoutProps) {
   const { t } = useTranslation()
   const location = useLocation()
   const [showBanner, setShowBanner] = useState(false)
@@ -38,7 +47,7 @@ export default function Layout({ children }) {
     setShowBanner(false)
   }
 
-  const handleSave = (settings) => {
+  const handleSave = (settings: CookieSettings) => {
     localStorage.setItem('cookie-consent', JSON.stringify(settings))
     setShowBanner(false)
   }
@@ -49,8 +58,14 @@ export default function Layout({ children }) {
 
   return (
     <div className="min-h-screen flex flex-col bg-charcoal-900">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold-400 focus:text-charcoal-900 focus:text-sm focus:font-body focus:rounded"
+      >
+        Skip to main content
+      </a>
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}
@@ -76,6 +91,9 @@ export default function Layout({ children }) {
       <AnimatePresence>
         {showBanner && (
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={t('cookie.title')}
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}

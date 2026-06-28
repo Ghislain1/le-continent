@@ -1,8 +1,24 @@
-import { useMemo } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import SectionTitle from '../components/SectionTitle'
+
+interface EventItem {
+  subtitle: string
+  title: string
+  day: string
+  time: string
+  desc: string
+  highlights: string[]
+  gradient: string
+  border: string
+}
+
+interface EventCardProps {
+  event: EventItem
+  index: number
+  isInView: boolean
+}
 
 const eventTitles = ['Dimanche Taro', 'Live Music Nights', 'VIP Events', 'Kulinarische Reise']
 const eventGradients = [
@@ -20,11 +36,11 @@ const eventBorders = [
 
 export default function Events() {
   const { t } = useTranslation()
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
-  const transEvents = t('events.items', { returnObjects: true })
-  const events = transEvents.map((e, i) => ({
+  const transEvents = t('events.items', { returnObjects: true }) as Array<Omit<EventItem, 'title' | 'gradient' | 'border'>>
+  const events: EventItem[] = transEvents.map((e, i) => ({
     ...e,
     title: eventTitles[i],
     gradient: eventGradients[i],
@@ -51,7 +67,7 @@ export default function Events() {
   )
 }
 
-function EventCard({ event, index, isInView }) {
+function EventCard({ event, index, isInView }: EventCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}

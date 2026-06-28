@@ -1,12 +1,25 @@
-import { useState, useMemo } from 'react'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import SectionTitle from '../components/SectionTitle'
 
+interface MenuItem {
+  id: number
+  category: string
+  name: string
+  price: string
+  desc?: string
+  tags?: string[]
+}
+
+interface MenuItemCardProps {
+  item: MenuItem
+}
+
 const categoryIds = ['all', 'mains', 'drinks', 'specialties']
 
-const staticItems = [
+const staticItems: MenuItem[] = [
   { id: 1, category: 'mains', name: 'Dimanche Taro', price: '24,90 €' },
   { id: 2, category: 'mains', name: 'Poulet DG', price: '22,50 €' },
   { id: 3, category: 'mains', name: 'Ndolé', price: '26,00 €' },
@@ -24,13 +37,13 @@ const staticItems = [
 export default function Menu() {
   const { t } = useTranslation()
   const [activeCategory, setActiveCategory] = useState('all')
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
 
   const categories = categoryIds.map(id => ({ id, label: t(`menu.categories.${id}`) }))
-  const transItems = t('menu.items', { returnObjects: true })
+  const transItems = t('menu.items', { returnObjects: true }) as Array<{ desc?: string; tags?: string[] }>
   const menuItems = staticItems.map((item, i) => ({
     ...item,
-    desc: transItems[i]?.desc || item.desc,
+    desc: transItems[i]?.desc || '',
     tags: transItems[i]?.tags || [],
   }))
 
@@ -85,7 +98,7 @@ export default function Menu() {
   )
 }
 
-function MenuItemCard({ item }) {
+function MenuItemCard({ item }: MenuItemCardProps) {
   return (
     <motion.div
       layout
@@ -113,7 +126,7 @@ function MenuItemCard({ item }) {
         {item.desc}
       </p>
       <div className="flex flex-wrap gap-2">
-        {item.tags.map((tag) => (
+        {item.tags?.map((tag) => (
           <span key={tag}
             className="text-[10px] tracking-wider uppercase font-body font-medium text-gold-400/60 bg-gold-400/5 px-2 py-1 border border-gold-400/10"
           >

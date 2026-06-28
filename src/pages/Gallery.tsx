@@ -3,9 +3,19 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import SectionTitle from '../components/SectionTitle'
 
+interface GalleryItem {
+  id: number
+  label: string
+  cat: string
+  cols: number
+  rows: number
+  img: string
+  alt: string
+}
+
 const categoryIds = ['all', 'ambient', 'food', 'drinks', 'events']
 
-const galleryItems = [
+const galleryItems: GalleryItem[] = [
   {
     id: 1, label: 'Interieur', cat: 'ambient', cols: 1, rows: 1.2,
     img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80',
@@ -68,7 +78,7 @@ const galleryItems = [
   },
 ]
 
-const placeholderSVGs = {
+const placeholderSVGs: Record<string, string> = {
   'Interieur': 'M6 4h12v16H6zM8 6h8v6H8zM12 14a1.5 1.5 0 100 3 1.5 1.5 0 000-3zM8 17l1-2h6l1 2M12 4V2M9 3l3-1 3 1',
   'Ambiente Lounge': 'M4 16h16v2H4zM6 16V8a6 6 0 0112 0v8M12 7a1 1 0 100-2 1 1 0 000 2zM14 18l2 3M10 18l-2 3',
   'Cocktails': 'M8 3l6 10v7a1 1 0 01-1 1H7a1 1 0 01-1-1v-7L12 3M6 6h8M10 6l1 5M14 4a2 2 0 100-4 2 2 0 000 4z',
@@ -85,9 +95,9 @@ const placeholderSVGs = {
 
 export default function Gallery() {
   const { t } = useTranslation()
-  const [selected, setSelected] = useState(null)
+  const [selected, setSelected] = useState<GalleryItem | null>(null)
   const [activeCat, setActiveCat] = useState('all')
-  const [loadedImages, setLoadedImages] = useState({})
+  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({})
 
   const categories = categoryIds.map(id => ({ id, label: t(`gallery.categories.${id}`) }))
 
@@ -95,7 +105,7 @@ export default function Gallery() {
     ? galleryItems
     : galleryItems.filter(item => item.cat === activeCat)
 
-  const handleKeyDown = useCallback((e) => {
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (!selected) return
     if (e.key === 'Escape') setSelected(null)
     if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
@@ -166,9 +176,10 @@ export default function Gallery() {
                   whileHover={{ scale: 1.02, y: -4 }}
                   className="group relative w-full overflow-hidden border border-gold-400/10 hover:border-gold-400/40 transition-all duration-500 cursor-pointer"
                   style={{ aspectRatio: item.rows > 1.2 ? '3/4.5' : item.rows > 1 ? '3/4' : item.cols > 1 ? '4/2.8' : '4/3' }}
+                  aria-label={t('gallery.openLightbox', { label: item.label })}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-bronze-700/60 via-charcoal-800/80 to-charcoal-900/90">
-                    <svg className="absolute inset-0 w-full h-full p-8 text-gold-400/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                    <svg className="absolute inset-0 w-full h-full p-8 text-gold-400/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" aria-hidden="true">
                       <path d={placeholderSVGs[item.label]} />
                     </svg>
                   </div>
@@ -222,6 +233,9 @@ export default function Gallery() {
       <AnimatePresence>
         {selected && (
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={t('gallery.title')}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -251,6 +265,7 @@ export default function Gallery() {
                 <button
                   onClick={() => setSelected(null)}
                   className="text-cream-100/50 hover:text-cream-100 transition-colors font-body text-xs tracking-widest uppercase"
+                  aria-label={t('gallery.close')}
                 >
                   {t('gallery.close')}
                 </button>
@@ -283,35 +298,39 @@ export default function Gallery() {
               </div>
 
               {selectedIdx > 0 && (
-                <button
-                  onClick={(e) => { e.stopPropagation(); setSelected(filtered[selectedIdx - 1]) }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center border border-gold-400/30 text-gold-400 hover:bg-gold-400 hover:text-charcoal-900 transition-all duration-300"
-                >
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M15 18l-6-6 6-6" />
-                  </svg>
-                </button>
-              )}
-              {selectedIdx < filtered.length - 1 && (
-                <button
-                  onClick={(e) => { e.stopPropagation(); setSelected(filtered[selectedIdx + 1]) }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center border border-gold-400/30 text-gold-400 hover:bg-gold-400 hover:text-charcoal-900 transition-all duration-300"
-                >
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M9 18l6-6-6-6" />
-                  </svg>
-                </button>
-              )}
-
-              <div className="flex justify-center gap-1.5 mt-3">
-                {filtered.map((item) => (
                   <button
-                    key={item.id}
-                    onClick={(e) => { e.stopPropagation(); setSelected(item) }}
-                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${item.id === selected.id ? 'bg-gold-400 w-4' : 'bg-cream-100/20 hover:bg-cream-100/40'
-                      }`}
-                  />
-                ))}
+                    aria-label={t('gallery.previous')}
+                    onClick={(e) => { e.stopPropagation(); setSelected(filtered[selectedIdx - 1]) }}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center border border-gold-400/30 text-gold-400 hover:bg-gold-400 hover:text-charcoal-900 transition-all duration-300"
+                  >
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                      <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                  </button>
+                )}
+                {selectedIdx < filtered.length - 1 && (
+                  <button
+                    aria-label={t('gallery.next')}
+                    onClick={(e) => { e.stopPropagation(); setSelected(filtered[selectedIdx + 1]) }}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center border border-gold-400/30 text-gold-400 hover:bg-gold-400 hover:text-charcoal-900 transition-all duration-300"
+                  >
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </button>
+                )}
+
+                <div className="flex justify-center gap-1.5 mt-3">
+                  {filtered.map((item) => (
+                    <button
+                      key={item.id}
+                      aria-label={t('gallery.goToSlide', { index: filtered.indexOf(item) + 1 })}
+                      aria-current={item.id === selected.id ? 'true' : undefined}
+                      onClick={(e) => { e.stopPropagation(); setSelected(item) }}
+                      className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${item.id === selected.id ? 'bg-gold-400 w-4' : 'bg-cream-100/20 hover:bg-cream-100/40'
+                        }`}
+                    />
+                  ))}
               </div>
             </motion.div>
           </motion.div>

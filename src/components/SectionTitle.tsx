@@ -1,7 +1,12 @@
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 
-function SteamParticle({ delay, x }) {
+interface SteamParticleProps {
+  delay: number
+  x: number
+}
+
+function SteamParticle({ delay, x }: SteamParticleProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 0, scale: 0.3, x: 0 }}
@@ -20,7 +25,11 @@ function SteamParticle({ delay, x }) {
   )
 }
 
-function SteamBurst({ trigger }) {
+interface SteamBurstProps {
+  trigger: boolean
+}
+
+function SteamBurst({ trigger }: SteamBurstProps) {
   if (!trigger) return null
   const particles = Array.from({ length: 8 }, (_, i) => ({
     id: i,
@@ -39,8 +48,16 @@ function SteamBurst({ trigger }) {
   )
 }
 
-export default function SectionTitle({ subtitle, title, scriptText, light = false, center = true }) {
-  const ref = useRef(null)
+interface SectionTitleProps {
+  subtitle?: string
+  title: string
+  scriptText?: string
+  light?: boolean
+  center?: boolean
+}
+
+export default function SectionTitle({ subtitle, title, scriptText, light = false, center = true }: SectionTitleProps) {
+  const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-60px' })
   const [hasFired, setHasFired] = useState(false)
   const [showSteam, setShowSteam] = useState(false)

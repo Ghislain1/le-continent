@@ -1,6 +1,12 @@
 import { motion } from 'framer-motion'
 
-export default function Badge({ text, icon = 'crown', className = '' }) {
+interface BadgeProps {
+  text: string
+  icon?: 'crown'
+  className?: string
+}
+
+export default function Badge({ text, icon = 'crown', className = '' }: BadgeProps) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8, rotate: -10 }}

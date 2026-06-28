@@ -1,7 +1,13 @@
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 
-const socials = [
+interface SocialLink {
+  name: string
+  href: string
+  icon: string
+}
+
+const socials: SocialLink[] = [
   { name: 'Instagram', href: '#', icon: 'M' },
   { name: 'Facebook', href: '#', icon: 'f' },
   { name: 'TikTok', href: '#', icon: 't' },
@@ -32,15 +38,15 @@ export default function Footer() {
           <div>
             <h4 className="font-heading text-gold-400 text-lg mb-6">{t('footer.visitTitle')}</h4>
             <div className="space-y-3 text-cream-100/70 text-sm font-body">
-              <p>Leunastraße 36</p>
-              <p>65929 Frankfurt am Main</p>
+              <p>{t('footer.addressLine1')}</p>
+              <p>{t('footer.addressLine2')}</p>
               <p className="pt-2">
-                <span className="text-gold-400">Tel:</span>{' '}
-                <a href="tel:+496900000000" className="hover:text-gold-400 transition-colors">+49 69 00000000</a>
+                <span className="text-gold-400">{t('contact.info.phone')}:</span>{' '}
+                <a href={`tel:${t('footer.phoneNumber')}`} className="hover:text-gold-400 transition-colors">{t('footer.phoneNumber')}</a>
               </p>
               <p>
-                <span className="text-gold-400">Mail:</span>{' '}
-                <a href="mailto:info@lecontinent.de" className="hover:text-gold-400 transition-colors">info@lecontinent.de</a>
+                <span className="text-gold-400">{t('contact.info.email')}:</span>{' '}
+                <a href={`mailto:${t('footer.emailAddress')}`} className="hover:text-gold-400 transition-colors">{t('footer.emailAddress')}</a>
               </p>
             </div>
           </div>
@@ -50,15 +56,15 @@ export default function Footer() {
             <div className="space-y-3 text-cream-100/70 text-sm font-body">
               <div className="flex justify-between">
                 <span>{t('footer.hours.0')}</span>
-                <span className="text-cream-100/50">17:00 – 01:00</span>
+                <span className="text-cream-100/50">{t('footer.hourRanges.0')}</span>
               </div>
               <div className="flex justify-between">
                 <span>{t('footer.hours.1')}</span>
-                <span className="text-cream-100/50">17:00 – 03:00</span>
+                <span className="text-cream-100/50">{t('footer.hourRanges.1')}</span>
               </div>
               <div className="flex justify-between text-gold-400">
                 <span>{t('footer.hours.2')}</span>
-                <span>10:00 – 22:00</span>
+                <span>{t('footer.hourRanges.2')}</span>
               </div>
               <p className="text-xs text-cream-100/40 pt-2">{t('footer.mondayClosed')}</p>
             </div>
@@ -88,7 +94,7 @@ export default function Footer() {
   )
 }
 
-function ShieldLogoSmall() {
+function ShieldLogoSmall(): React.JSX.Element {
   return (
     <svg viewBox="0 0 50 60" className="w-8 h-10" aria-hidden="true">
       <defs>
