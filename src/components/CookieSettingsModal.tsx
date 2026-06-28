@@ -1,12 +1,8 @@
 import { useEffect, useState } from 'react'
-import { m, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { X, Cookie } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-
-interface CookieSettings {
-  analytics: boolean
-  preferences: boolean
-}
+import { CookieSettings } from '../models/cookie-seetings'
 
 interface CookieSettingsModalProps {
   isOpen: boolean
@@ -75,12 +71,16 @@ const sections = ['essential', 'analytics', 'preferences', 'manage'] as const
 export function CookieSettingsModal({ isOpen, onClose, onAccept, onSave }: CookieSettingsModalProps) {
   const { t } = useTranslation()
   const [analytics, setAnalytics] = useState(false)
+  const [essential, setEssential] = useState(true)
   const [preferences, setPreferences] = useState(true)
+  const [manage, setManage] = useState(true)
 
   useEffect(() => {
     if (isOpen) {
+      setEssential(false)
       setAnalytics(false)
       setPreferences(true)
+      setManage(false)
     }
   }, [isOpen])
 
@@ -93,10 +93,10 @@ export function CookieSettingsModal({ isOpen, onClose, onAccept, onSave }: Cooki
   }, [isOpen, onClose])
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          <m.div
+    <>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
             key="cookie-backdrop"
             variants={backdropVariants}
             initial="hidden"
@@ -107,8 +107,12 @@ export function CookieSettingsModal({ isOpen, onClose, onAccept, onSave }: Cooki
             onClick={onClose}
             aria-hidden="true"
           />
+        )}
+      </AnimatePresence>
 
-          <m.div
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
             key="cookie-modal"
             role="dialog"
             aria-modal="true"
@@ -120,7 +124,7 @@ export function CookieSettingsModal({ isOpen, onClose, onAccept, onSave }: Cooki
             className="fixed inset-0 z-50 flex items-end justify-center p-4 pointer-events-none"
           >
             {particles.map((p, i) => (
-              <m.div
+              <motion.div
                 key={i}
                 className="absolute pointer-events-none"
                 initial={{ opacity: 0, y: 60, x: p.x, scale: 0 }}
@@ -165,7 +169,7 @@ export function CookieSettingsModal({ isOpen, onClose, onAccept, onSave }: Cooki
 
               <div className="px-6 py-6 space-y-5 text-sm text-(--color-text-muted) leading-relaxed">
                 {sections.map((key, i) => (
-                  <m.div
+                  <motion.div
                     key={key}
                     custom={i}
                     variants={contentVariants}
@@ -195,10 +199,10 @@ export function CookieSettingsModal({ isOpen, onClose, onAccept, onSave }: Cooki
                         </label>
                       )}
                     </div>
-                  </m.div>
+                  </motion.div>
                 ))}
 
-                <m.div
+                <motion.div
                   custom={4}
                   variants={contentVariants}
                   initial="hidden"
@@ -214,17 +218,17 @@ export function CookieSettingsModal({ isOpen, onClose, onAccept, onSave }: Cooki
                   </button>
                   <button
                     type="button"
-                    onClick={() => { onSave({ analytics, preferences }); onClose() }}
+                    onClick={() => { onSave({ essential, analytics, preferences, manage }); onClose() }}
                     className="flex-1 px-4 py-2.5 rounded-xl font-medium text-sm border border-(--color-border) text-(--color-text-muted) hover:bg-(--color-bg-alt) transition-all cursor-pointer"
                   >
                     {t('cookie.save')}
                   </button>
-                </m.div>
+                </motion.div>
               </div>
             </div>
-          </m.div>
-        </>
-      )}
-    </AnimatePresence>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }

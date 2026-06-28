@@ -6,6 +6,7 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import { CookieSettingsModal } from './CookieSettingsModal'
 import { useToast } from '../hooks/useToast'
+import { CookieSettings } from '../models/cookie-seetings'
 
 const pageVariants = {
   initial: { opacity: 0, y: 24 },
@@ -23,10 +24,7 @@ interface LayoutProps {
   children: React.ReactNode
 }
 
-interface CookieSettings {
-  analytics: boolean
-  preferences: boolean
-}
+
 
 export default function Layout({ children }: LayoutProps) {
   const { t } = useTranslation()
@@ -46,7 +44,7 @@ export default function Layout({ children }: LayoutProps) {
 
   // Handle when user  on Accept All Click
   const handleAcceptAll = () => {
-    let consentValue = JSON.stringify({ analytics: true, preferences: true })
+    let consentValue = JSON.stringify({ analytics: true, preferences: true, })
     localStorage.setItem(localAnalyticsPreferencesKey, consentValue)
     showToast(t('cookie.save'))
     setShowBanner(false)
@@ -54,11 +52,12 @@ export default function Layout({ children }: LayoutProps) {
 
   const handleSave = (settings: CookieSettings) => {
     localStorage.setItem(localAnalyticsPreferencesKey, JSON.stringify(settings))
+    showToast(t('cookie.save'))
     setShowBanner(false)
   }
   // Handle when user  on Cookie Management
   const openModal = () => {
-    showToast("COOKKK")
+    showToast(t('cookie.open'))
     setModalOpen(true)
   }
 
@@ -86,6 +85,7 @@ export default function Layout({ children }: LayoutProps) {
         </AnimatePresence>
       </main>
       <Footer />
+
 
       <CookieSettingsModal
         isOpen={modalOpen}
