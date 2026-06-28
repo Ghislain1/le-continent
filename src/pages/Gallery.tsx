@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useMemo } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import SectionTitle from '../components/SectionTitle'
@@ -131,11 +131,10 @@ export default function Gallery() {
             <button
               key={cat.id}
               onClick={() => { setActiveCat(cat.id); setSelected(null) }}
-              className={`relative px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-body font-medium transition-all duration-300 cursor-pointer ${
-                activeCat === cat.id
+              className={`relative px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-body font-medium transition-all duration-300 cursor-pointer ${activeCat === cat.id
                   ? 'text-charcoal-900'
                   : 'text-cream-100/60 hover:text-cream-100 border border-gold-400/20 hover:border-gold-400/40'
-              }`}
+                }`}
             >
               {activeCat === cat.id && (
                 <motion.div
@@ -178,9 +177,8 @@ export default function Gallery() {
                     src={item.img}
                     alt={item.alt}
                     loading="lazy"
-                    className={`w-full h-full object-cover transition-all duration-700 ${
-                      loadedImages[item.id] ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
-                    }`}
+                    className={`w-full h-full object-cover transition-all duration-700 ${loadedImages[item.id] ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+                      }`}
                     onLoad={() => setLoadedImages(prev => ({ ...prev, [item.id]: true }))}
                   />
 
@@ -188,12 +186,11 @@ export default function Gallery() {
 
                   <div className="absolute inset-0 p-5 flex flex-col justify-end translate-y-3 group-hover:translate-y-0 transition-transform duration-500">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className={`text-[9px] tracking-widest uppercase font-body font-medium px-2 py-1 ${
-                        item.cat === 'ambient' ? 'text-gold-300 bg-gold-400/10 border border-gold-400/20' :
-                        item.cat === 'food' ? 'text-cream-100 bg-bronze-700/50 border border-gold-400/10' :
-                        item.cat === 'drinks' ? 'text-gold-400 bg-gold-400/5 border border-gold-400/20' :
-                        'text-cream-100/70 bg-charcoal-800/50 border border-gold-400/10'
-                      }`}>
+                      <span className={`text-[9px] tracking-widest uppercase font-body font-medium px-2 py-1 ${item.cat === 'ambient' ? 'text-gold-300 bg-gold-400/10 border border-gold-400/20' :
+                          item.cat === 'food' ? 'text-cream-100 bg-bronze-700/50 border border-gold-400/10' :
+                            item.cat === 'drinks' ? 'text-gold-400 bg-gold-400/5 border border-gold-400/20' :
+                              'text-cream-100/70 bg-charcoal-800/50 border border-gold-400/10'
+                        }`}>
                         {t(`gallery.labels.${item.cat}`)}
                       </span>
                     </div>
@@ -242,12 +239,11 @@ export default function Gallery() {
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <span className={`text-[10px] tracking-widest uppercase font-body font-medium px-2 py-1 ${
-                    selected.cat === 'ambient' ? 'text-gold-300 bg-gold-400/10 border border-gold-400/20' :
-                    selected.cat === 'food' ? 'text-cream-100 bg-bronze-700/50 border border-gold-400/10' :
-                    selected.cat === 'drinks' ? 'text-gold-400 bg-gold-400/5 border border-gold-400/20' :
-                    'text-cream-100/70 bg-charcoal-800/50 border border-gold-400/10'
-                  }`}>
+                  <span className={`text-[10px] tracking-widest uppercase font-body font-medium px-2 py-1 ${selected.cat === 'ambient' ? 'text-gold-300 bg-gold-400/10 border border-gold-400/20' :
+                      selected.cat === 'food' ? 'text-cream-100 bg-bronze-700/50 border border-gold-400/10' :
+                        selected.cat === 'drinks' ? 'text-gold-400 bg-gold-400/5 border border-gold-400/20' :
+                          'text-cream-100/70 bg-charcoal-800/50 border border-gold-400/10'
+                    }`}>
                     {t(`gallery.labels.${selected.cat}`)}
                   </span>
                   <p className="font-heading text-gold-400 text-lg">{selected.label}</p>
@@ -312,9 +308,8 @@ export default function Gallery() {
                   <button
                     key={item.id}
                     onClick={(e) => { e.stopPropagation(); setSelected(item) }}
-                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                      item.id === selected.id ? 'bg-gold-400 w-4' : 'bg-cream-100/20 hover:bg-cream-100/40'
-                    }`}
+                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${item.id === selected.id ? 'bg-gold-400 w-4' : 'bg-cream-100/20 hover:bg-cream-100/40'
+                      }`}
                   />
                 ))}
               </div>
